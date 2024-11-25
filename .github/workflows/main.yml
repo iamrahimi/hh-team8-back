@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Check that npm start works (i.e., the app runs correctly)
+      # Check that npm run dev works (i.e., the app runs correctly)
       - name: Start the application
         run: npm run dev &
         continue-on-error: false  # true Allow the workflow to continue even if npm start fails
@@ -36,9 +36,9 @@ jobs:
       - name: Wait for app to start
         run: sleep 10  # Optional: Adjust sleep duration based on your app's startup time
 
-      # Check if the process is running (this checks if npm start worked)
+      # Check if the process is running (this checks if npm run dev worked)
       - name: Verify the app is running
         run: |
-          if ! pgrep -f "npm start" > /dev/null; then
-            echo "npm start did not run correctly" && exit 1
+          if ! pgrep -f "npm run dev" > /dev/null; then
+            echo "npm run dev did not run correctly" && exit 1
           fi
